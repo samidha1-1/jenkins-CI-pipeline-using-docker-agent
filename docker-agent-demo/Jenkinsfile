@@ -15,8 +15,9 @@ pipeline {
         stage("run app") {
             steps {
                 sh "python --version"
-                sh "python appy.py"
+                sh "python app.py"
             }
         }
     }
 }
+

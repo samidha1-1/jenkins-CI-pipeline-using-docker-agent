@@ -14,10 +14,13 @@ pipeline {
 
         stage("run app") {
             steps {
+                dir('docker-agent-demo'){
                 sh "python --version"
                 sh "python app.py"
+                }
             }
         }
     }
 }
+
 

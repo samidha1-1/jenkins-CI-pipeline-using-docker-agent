@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        docker {
+            image 'python:3.9'
+        }
+    }
+
+    stages {
+        stage("clone repo") {
+            steps {
+                echo "Cloning repository"
+            }
+        }
+
+        stage("run app") {
+            steps {
+                sh "python --version"
+                sh "python appy.py"
+            }
+        }
+    }
+}

@@ -50,4 +50,4 @@ This ensured that Jenkins executed the script from the correct path inside the D
 
 ## Jenkins pipeline output 
 
-![Jenkins Console Output(screenshots/console-output.png)
+![Jenkins Console Output](screenshots/console-output.png)

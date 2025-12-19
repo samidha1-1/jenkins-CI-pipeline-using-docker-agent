@@ -17,20 +17,34 @@ consistent environment .Each jenkins build run inside a docker container , ensur
 - Add the jenkinsfile
 - Run the pipeline 
 
-## Error encountered and resolution 
-- Issue : During pipeline execution, the build failed with the following error:
- python: can't open file '/var/lib/jenkins/workspace/my-pipeline/app.py':
+##  Error Encountered & Resolution
+
+###  Issue
+During pipeline execution, the build failed with the following error:
+
+```text
+python: can't open file '/var/lib/jenkins/workspace/my-pipeline/app.py':
 [Errno 2] No such file or directory
+```
 
-- Root cause
- Jenkins executes pipeline steps from the workspace root directory.
- However, the application file app.py was located inside a subdirectory:
- docker-agent-demo/app.py
- Since Jenkins was not automatically navigating into this folder, the file could not be found.
+###  Root Cause
+Jenkins executes pipeline steps from the workspace root directory by default.  
+However, the application file `app.py` was located inside a subdirectory:
 
-- Solution
- So i used dir() in my jenkinsfile to change into the current directory before exceuting the scripts .
+```text
+docker-agent-demo/app.py
+```
+
+Since Jenkins does not automatically navigate into subdirectories, the file could not be found during execution.
+
+### Solution
+The issue was resolved by using the `dir()` step in the Jenkinsfile to change into the correct directory before executing the script.
+
+```groovy
 dir('docker-agent-demo') {
     sh 'python app.py'
 }
- 
+```
+
+This ensured that Jenkins executed the script from the correct path inside the Docker agent.
+

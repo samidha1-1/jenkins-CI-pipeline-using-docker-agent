@@ -48,3 +48,6 @@ dir('docker-agent-demo') {
 
 This ensured that Jenkins executed the script from the correct path inside the Docker agent.
 
+## Jenkins pipeline output 
+
+![Jenkins Console Output(screenshots/console-output.png)
